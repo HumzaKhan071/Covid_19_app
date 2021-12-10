@@ -8,6 +8,16 @@ class CountryDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+
+      padding: EdgeInsets.symmetric(horizontal: 12),
+      height: 40,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        
+      ),
+      child: DropdownButtonHideUnderline(child: 
+      ),
+    );
   }
 }
