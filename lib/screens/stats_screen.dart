@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_covid_dashboard_ui/constants/palette.dart';
 import 'package:flutter_covid_dashboard_ui/constants/styles.dart';
 import 'package:flutter_covid_dashboard_ui/widgets/custom_app_bar.dart';
+import 'package:flutter_covid_dashboard_ui/widgets/widgets.dart';
 
 class StatsScreen extends StatefulWidget {
   const StatsScreen({Key key}) : super(key: key);
