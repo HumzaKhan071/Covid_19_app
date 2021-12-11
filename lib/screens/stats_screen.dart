@@ -2,6 +2,7 @@ import 'package:bubble_tab_indicator/bubble_tab_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_dashboard_ui/constants/palette.dart';
 import 'package:flutter_covid_dashboard_ui/constants/styles.dart';
+import 'package:flutter_covid_dashboard_ui/data/data.dart';
 import 'package:flutter_covid_dashboard_ui/widgets/custom_app_bar.dart';
 import 'package:flutter_covid_dashboard_ui/widgets/widgets.dart';
 
@@ -20,16 +21,22 @@ class _StatsScreenState extends State<StatsScreen> {
       appBar: CustomAppBar(),
       body: CustomScrollView(
         physics: ClampingScrollPhysics(),
-        slivers: [_buildHeader(), _buildRegionalTabBAr(), _buildStatsTabBar(),
-        SliverPadding(padding: EdgeInsets.symmetric(horizontal: 10),
-        
-        sliver: SliverToBoxAdapter(
-
-          child: StatsGrid(),
-        ),),
-
-
-
+        slivers: [
+          _buildHeader(),
+          _buildRegionalTabBAr(),
+          _buildStatsTabBar(),
+          SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            sliver: SliverToBoxAdapter(
+              child: StatsGrid(),
+            ),
+          ),
+          SliverPadding(
+            padding: EdgeInsets.only(top: 20),
+            sliver: SliverToBoxAdapter(
+              child: CovidBarChart(covidCases: covidUSDailyNewCases),
+            ),
+          ),
         ],
       ),
     );

@@ -6,13 +6,23 @@ class StatsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.yellow,
       height: MediaQuery.of(context).size.height * 0.25,
       child: Column(
         children: [
           Flexible(
               child: Row(
-            children: [],
+            children: [
+              _buildStatsCard("Recovered", "391 K", Colors.green),
+              _buildStatsCard("Active", "1.31 M", Colors.lightBlue),
+              _buildStatsCard("Active", "N/A", Colors.purple),
+            ],
+          )),
+          Flexible(
+              child: Row(
+            children: [
+              _buildStatsCard("Total Cases", "1.81M", Colors.orange),
+              _buildStatsCard("Deaths", "105 K", Colors.red),
+            ],
           ))
         ],
       ),
@@ -31,14 +41,14 @@ class StatsGrid extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Total Cases",
+              title,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.w600),
             ),
             Text(
-              "1.81M",
+              count,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
