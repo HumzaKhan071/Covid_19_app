@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_covid_dashboard_ui/constants/palette.dart';
+import 'package:flutter_covid_dashboard_ui/constants/styles.dart';
+import 'package:flutter_covid_dashboard_ui/data/data.dart';
 import 'package:flutter_covid_dashboard_ui/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
         physics: NeverScrollableScrollPhysics(),
         slivers: <Widget>[
           _buildHeader(screenHeight),
+          _buildPreventationTips(screenHeight),
+          _buildYourOwnText(screenHeight),
         ],
       ),
     );
@@ -59,6 +63,158 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
+            SizedBox(height: screenHeight * 0.03),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Are you feeling sick ",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(height: screenHeight * 0.01),
+                Text(
+                  "If you feel sick with any COVID-19 symtoms,please call the hospital",
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 15.0,
+                  ),
+                ),
+                SizedBox(
+                  height: screenHeight * 0.03,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FlatButton.icon(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        onPressed: () {},
+                        color: Colors.red,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        icon: Icon(
+                          Icons.phone,
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          "Call Now",
+                          style: Style.buttonTextStyle,
+                        ),
+                        textColor: Colors.white),
+                    FlatButton.icon(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        onPressed: () {},
+                        color: Colors.blue,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)),
+                        icon: Icon(
+                          Icons.chat_bubble,
+                          color: Colors.white,
+                        ),
+                        label: Text(
+                          "Send SMS",
+                          style: Style.buttonTextStyle,
+                        ),
+                        textColor: Colors.white)
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  SliverToBoxAdapter _buildPreventationTips(double screenHeight) {
+    return SliverToBoxAdapter(
+      child: Container(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Preventation Tips",
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: prevention
+                    .map((e) => Column(
+                          children: [
+                            Image.asset(
+                              e.keys.first,
+                              height: screenHeight * 0.2,
+                            ),
+                            SizedBox(
+                              height: screenHeight * 0.015,
+                            ),
+                            Text(
+                              e.values.first,
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w500),
+                              textAlign: TextAlign.center,
+                            )
+                          ],
+                        ))
+                    .toList())
+          ],
+        ),
+      ),
+    );
+  }
+
+  SliverToBoxAdapter _buildYourOwnText(double screenHeight) {
+    return SliverToBoxAdapter(
+      child: Container(
+        margin: EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 20,
+        ),
+        padding: EdgeInsets.all(20),
+        height: screenHeight * 0.15,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Color(0xFFAD9FE4), Palette.primaryColor]),
+            borderRadius: BorderRadius.circular(20)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Image.asset("assets/images/own_test.png"),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Do your own test!",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(
+                  height: screenHeight * 0.01,
+                ),
+                Text(
+                  "Follow the instructions\nto do your own test.",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                  maxLines: 2,
+                )
+              ],
+            )
           ],
         ),
       ),
